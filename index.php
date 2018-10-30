@@ -10,6 +10,7 @@ session_start();
 	<title>Outil de révision des tables de multiplication</title>
 </head>
 <body>
+	<section>
 	<h1>Révise tes tables de multiplication dans l'fun!</h1>
 	<h2>la table de 3</h2>	
 	<?php
@@ -199,38 +200,25 @@ if (isset($_POST['table'])){
 
 		if ($_SESSION['reponseDeLEleve'] == $_SESSION['bonneReponse']) {
 			echo 'Bonne réponse! La solution était bien '.$_SESSION['operationQuestion']; 
-			echo $_SESSION['bonneReponse'].'. Choisis une autre table de multiplication!';
+			echo $_SESSION['bonneReponse'].'. Choisis une autre table de multiplication.';
 		} else {
 			echo "Mauvaise réponse! Tu as répondu ".$_SESSION['reponseDeLEleve'].' alors que la bonne réponse était : '.$_SESSION['operationQuestion']; 
-			echo $_SESSION['bonneReponse'].'. Choisis une autre table de multiplication!';
+			echo $_SESSION['bonneReponse'].'. Choisis une autre table de multiplication.';
 		}
 	}
 
-// if (isset($_POST['validReponseRevision'])){
-// 	$reponseRevision = $_POST['validReponseRevision'];
-// 	if (($randomNumber * $choixDeLaTable) == intval($reponseRevision)) {
-// 		echo 'bravo';
-// 	} else {
-// 		echo "you suck";
-// 	}
-// }
-
 	?>	
-<!-- script type="text/javascript">
-	let bonneReponse = document.getElementById('reponseSpan');
-	let reponseEleve = document.getElementById('inputReponse');
-	if (parseInt(bonneReponse) == parseInt(reponseEleve)) {
-		alert(' c bien tu as trouvé');
-	} else {
-		alert('c faux');
-	}
-</script> -->
-<!--  for ($i=0; $i <= 10; $i++) {
-	for ($j=0; $j <= 10; $j++) { 
- 	
- 	echo $j. '*' .$i. '=' .$i * $j.'<br>';
-  } 
-} -->
+</section>
+<section>
+	<h1>Mode super révision</h1>
+<?php
 
+var xhr = new XMLHttpRequest();
+.xhr.open('GET', 'ajax.xml');
+XMLHttpRequest
+
+
+?> 
+</section>
 </body>
 </html>
