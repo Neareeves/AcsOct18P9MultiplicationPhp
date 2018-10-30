@@ -8,6 +8,12 @@ session_start();
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="stylesaleth.css">
 	<title>Outil de révision des tables de multiplication</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
 </head>
 <body>
 	<section>
@@ -91,12 +97,24 @@ session_start();
 	<h2>La table de ? 3.0</h2>
 
 	<form method="post" action="index.php">
-		<label for="table0" name="table0">La table du 0</label>
-		<input type="checkbox" name="table[]" value="0"><br>
-		<label for="table1" name="table1">La table du 1</label>
-		<input type="checkbox" name="table[]" value="1"><br>
-		<label for="table2" name="table2">La table du 2</label>
-		<input type="checkbox" name="table[]" value="2"><br>
+		<p>
+			<label for="table0" name="table0">
+				<input type="checkbox" name="table[]" value="0">
+				<span>La table du 0</span>
+			</label>
+		</p>
+		<p>
+			<label for="table1" name="table1">
+				<input type="checkbox" name="table[]" value="1" disabled="disabled>
+				<span>La table du 1</span>
+			</label>
+		</p>
+		<p>
+			<label for="table2" name="table2">
+				<input type="checkbox" name="table[]" value="2" id="indeterminate-checkbox" >
+				<span>La table du 2</span>
+			</label>
+		</p>
 		<label for="table3" name="table3">La table du 3</label>
 		<input type="checkbox" name="table[]" value="3"><br>
 		<label for="table4" name="table4">La table du 4</label>
@@ -116,7 +134,7 @@ session_start();
 		<input type="submit" value="go!" name="validCheckbox"> 
 	</form>
 	<?php
-if (isset($_POST['table'])){
+if (isset($_POST['validCheckbox'])){
 	foreach($_POST['table'] as $valeur){
 		for ($j=0; $j <= 10; $j++) {
 			if ($j == 10){
@@ -209,13 +227,148 @@ if (isset($_POST['table'])){
 
 	?>	
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section>
+
+	<h2>Mode révision, avec Ajax plus blanc que blanc</h2>
+	<form action="index.php" method="post">
+		<label>Choisis une table de multiplication pour te tester</label><br>
+		<label for="revisionAjax">Table du 0</label>
+		<input type="radio" name="revisionAjax[]" value="0"><br>
+		<label for="revisionAjax">Table du 1</label>
+		<input type="radio" name="revisionAjax[]" value="1"><br>
+		<label for="revisionAjax">Table du 2</label>
+		<input type="radio" name="revisionAjax[]" value="2"><br>
+		<label for="revisionAjax">Table du 3</label>
+		<input type="radio" name="revisionAjax[]" value="3"><br>
+		<label for="revisionAjax">Table du 4</label>
+		<input type="radio" name="revisionAjax[]" value="4"><br>
+		<label for="revisionAjax">Table du 5</label>
+		<input type="radio" name="revisionAjax[]" value="5"><br>
+		<label for="revisionAjax">Table du 6</label>
+		<input type="radio" name="revisionAjax[]" value="6"><br>
+		<label for="revisionAjax">Table du 7</label>
+		<input type="radio" name="revisionAjax[]" value="7"><br>
+		<label for="revisionAjax">Table du 8</label>
+		<input type="radio" name="revisionAjax[]" value="8"><br>
+		<label for="revisionAjax">Table du 9</label>
+		<input type="radio" name="revisionAjax[]" value="9"><br>
+		<label for="revisionAjax">Table du 10</label>
+		<input type="radio" name="revisionAjax[]" value="10"><br>
+		<input type="submit" name="validRadio">
+	</form>
+
+	<?php
+	if (isset($_POST['revisionAjax'])){
+	
+		
+	foreach($_POST['revisionAjax'] as $choixDeLaTableAjax){
+		$randomNumberAjax = rand(0,10);
+
+		echo $choixDeLaTableAjax. ' x ' .$randomNumberAjax. ' ='.$choixDeLaTableAjax*$randomNumberAjax;
+
+		
+	}
+}
+
+	?>
+	<form method="post" action="index.php">
+		<input style="display: none" type="text" name="operationAjax" value="<?php 
+		if (isset($choixDeLaTable)){
+		echo $choixDeLaTableAjax.' x '.$randomNumberAjax.' = ';} ?>">
+		<input style="display: none" type="text" name="resultatAjax" value="<?php echo $choixDeLaTable*$randomNumber ?>">
+	<input type="text" name="ReponseEleveAjax">
+	<input id="submitreponseAjax" type="submit" name="submitReponseAjax">
+	</form>
+
+	<div id="bonneReponseBravo"></div>
+	<div id="mauvaiseReponsePasBravo"></div>
+
+
+	<script>
+
+// function submitForm()
+// { 
+//   var xhr=createXHR();
+//   xhr.open("GET", "ajax.txt",true);
+//   xhr.onreadystatechange=function(){ 
+//     if(xhr.readyState == 4)
+//     {
+//       document.getElementById("bonneReponseBravo").innerHTML= xhr.responseText;	
+//     } 
+//   }; 
+//   xhr.send(null); 
+// }
+// submitForm();
+
+$(document).ready(function(){
+    $("#submitreponseAjax").click(function(){
+        $.ajax({url: "ajax.html", success: function(cocorico){
+            $("#bonneReponseBravo").html(cocorico);
+        }});
+    });
+});
+
+
+
+
+// $("#ajax.html").click(function(){
+
+//     $.ajax({
+//        url : 'ajax.html',
+//        type : 'GET',
+//        dataType : 'html',
+//        success : function(code_html, statut){
+//        	 $(code_html).appendTo("#bonneReponseBravo"); 
+//        },
+
+//        error : function(resultat, statut, erreur){
+//        },
+//        complete : function(resultat, statut){
+//        }
+//     });
+//    });
+</script>
+
+
+
 	<h1>Mode super révision</h1>
 <?php
 
-var xhr = new XMLHttpRequest();
-.xhr.open('GET', 'ajax.xml');
-XMLHttpRequest
+
+$randomNumber1 = rand(1,10);
+$randomNumber2 = rand(1,10);
+$randomNumber3 = rand(1,10);
+$randomNumber4 = rand(1,10);
+$randomNumber5 = rand(1,10);
+$randomNumber10 = rand(1,10);
+$randomNumber20 = rand(1,10);
+$randomNumber30 = rand(1,10);
+$randomNumber40 = rand(1,10);
+$randomNumber50 = rand(1,10);
+echo $randomNumber1.' * ' .$randomNumber10. ' = ' .($randomNumber10 * $randomNumber1). '<br>';
+echo $randomNumber2.' * ' .$randomNumber20. ' = ' .($randomNumber20 * $randomNumber2). '<br>';
+echo $randomNumber3.' * ' .$randomNumber30. ' = ' .($randomNumber30 * $randomNumber3). '<br>';
+echo $randomNumber4.' * ' .$randomNumber40. ' = ' .($randomNumber40 * $randomNumber4). '<br>';
+echo $randomNumber5.' * ' .$randomNumber50. ' = ' .($randomNumber50 * $randomNumber5). '<br>';
+	
+// var xhr = new XMLHttpRequest();
+// .xhr.open('GET', 'ajax.xml');
+// XMLHttpRequest
 
 
 ?> 
