@@ -1,0 +1,17 @@
+bady{
+	margin: 0;
+	padding: 0;
+}
+h1 {background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+		background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+		color:transparent;
+		-webkit-background-clip: text;
+		background-clip: text;
+		font-size: 40px;
+		text-align: center;
+	}
+/*ouvrir l'accolade dans une balise et fermer dans une autre balise l'accolade de php peut être remplacé par : (à la place de la première accolade) et endif; à la place de la 2e. Comme ça on peut mettre des structures complexes en html sans s'embrouiller avec les guilleets des echo.*/
+
+/*<label><?php if(isset($_POST['validReponseRevision'])){
+			echo $choixDeLaTable. ' x ' .$randomNumber. ' =';} ?>
+		</label>*/

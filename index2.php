@@ -23,7 +23,7 @@
 	?>
 
 	<h2>La table de ?</h2>
-	<form method="post" action="index.php">
+	<form method="post" action="index2.php">
 		<label>Tapez un chiffre entre 0 et 10 pour voir apparaître sa table de multiplication</label>
 		<input type="text" name="table">
 		<input type="submit" name="valider">
@@ -46,7 +46,7 @@
 	?>
 
 	<h2>La table de ? 2.0</h2>
-	<form method='post' action='index.php'>
+	<form method='post' action='index2.php'>
 		<select name='selectionTable'>
 			<option value='0' selected>0</option>
 			<option value='1'>1</option>
@@ -89,7 +89,7 @@
 	?>
 	<h2>La table de ? 3.0</h2>
 
-	<form method="post" action="index.php">
+	<form method="post" action="index2.php">
 		<label for="table0" name="table0">La table du 0</label>
 		<input type="checkbox" name="table[]" value="0"><br>
 		<label for="table1" name="table1">La table du 1</label>
@@ -132,7 +132,7 @@
 	}
 	?>
 	<h2>Mode révision</h2>
-	<form action="index.php" method="post">
+	<form action="index2.php" method="post">
 		<label>Choisis une table de multiplication pour te tester</label><br>
 		<label for="revision0">Table du 0</label>
 		<input type="radio" name="revision[]" value="0"><br>
@@ -175,9 +175,9 @@ echo $choixDeLaTable. ' x ' .$randomNumber. ' =' .($choixDeLaTable*$randomNumber
 // }
 // 	}
 	?>
- <form action="index.php" method="post" id="formulaireReponseRevision" style="display: inline">
+ <form action="index2.php" method="post" id="formulaireReponseRevision" style="display: inline">
 
-	<input type="text" name="resultat" id="inputReponse" placeholder="tape la réponse ici" value (style = "display :none")="<?php echo $choixDeLaTable*$randomNumber ?>">
+	<input type="text" name="resultat" id="inputReponse" placeholder="tape la réponse ici" value(style = "display :none")="<?php echo $choixDeLaTable*$randomNumber ?>">
 		<input type="submit" name="validReponseRevision">
 	</form>
 
@@ -189,14 +189,7 @@ if (isset($_POST["validReponseRevision"])){
 		echo "mauvaise réponse";
 	}
 }
-// if (isset($_POST['validReponseRevision'])){
-// 	$reponseRevision = $_POST['validReponseRevision'];
-// 	if (($randomNumber * $choixDeLaTable) == intval($reponseRevision)) {
-// 		echo 'bravo';
-// 	} else {
-// 		echo "you suck";
-// 	}
-// }
+
 
 ?>	
 <!-- script type="text/javascript">

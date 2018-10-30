@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 ?>
 
@@ -10,7 +10,7 @@
 	<title>Outil de révision des tables de multiplication</title>
 </head>
 <body>
-	
+	<h1>Révise tes tables de multiplication dans l'fun!</h1>
 	<h2>la table de 3</h2>	
 	<?php
 
@@ -115,7 +115,7 @@
 		<input type="submit" value="go!" name="validCheckbox"> 
 	</form>
 	<?php
-//if (isset($_POST['validChecbox'])){
+if (isset($_POST['table'])){
 	foreach($_POST['table'] as $valeur){
 		for ($j=0; $j <= 10; $j++) {
 			if ($j == 10){
@@ -130,6 +130,7 @@
 
 		}
 	}
+}
 	?>
 	<h2>Mode révision</h2>
 	<form action="index.php" method="post">
@@ -156,16 +157,21 @@
 		<input type="radio" name="revision[]" value="9"><br>
 		<label for="revision">Table du 10</label>
 		<input type="radio" name="revision[]" value="10"><br>
-<input type="submit" name="validRadio">
+		<input type="submit" name="validRadio">
 	</form>
 
 	<?php
-foreach($_POST['revision'] as $choixDeLaTable){
-$randomNumber = rand(0,10);
-//global $randomNumber;
-// $choixDeLaTable;
-echo $choixDeLaTable. ' x ' .$randomNumber. ' =' .($choixDeLaTable*$randomNumber);
+	if (isset($_POST['revision'])){
+	
+		
+	foreach($_POST['revision'] as $choixDeLaTable){
+		$randomNumber = rand(0,10);
+// global $choixDeLaTable;
+// global $randomNumber;
+		echo $choixDeLaTable. ' x ' .$randomNumber. ' =';
 	//session
+		
+	}
 }
 // 	$i=0;
 // 	while ($i <= 10) {
@@ -175,20 +181,31 @@ echo $choixDeLaTable. ' x ' .$randomNumber. ' =' .($choixDeLaTable*$randomNumber
 // }
 // 	}
 	?>
- <form id="formulaireReponseRevision" style="display: inline">
- 	<input style="display: none" type="text" name="resultat" value="<?php echo $choixDeLaTable*$randomNumber ?>">
-	<input type="text" id="inputReponse" placeholder="tape la réponse ici">
+	<form id="formulaireReponseRevision" method="post" action="index.php" style="display: inline">
+		
+		<input style="display: none" type="text" name="operation" value="<?php 
+		if (isset($choixDeLaTable)){
+		echo $choixDeLaTable.' x '.$randomNumber.' = ';} ?>">
+		<input style="display: none" type="text" name="resultat" value="<?php echo $choixDeLaTable*$randomNumber ?>">
+		<input type="text" id="inputReponse" placeholder="tape la réponse ici" name="reponseEleve">
 		<input type="submit" name="validReponseRevision">
 	</form>
 
-<?php
-if (isset($_POST['validReponseRevision'])){
-	if ($_POST['validReponseRevision'] == ($choixDeLaTable*$randomNumber)) {
-		echo 'you won';
-	} else {
-		echo "ce n'est pas la bonne réponse";
+	<?php
+	if (isset($_POST['validReponseRevision'])){
+		$_SESSION['bonneReponse'] = $_POST['resultat'];
+		$_SESSION['reponseDeLEleve'] = $_POST['reponseEleve'];
+		$_SESSION['operationQuestion'] = $_POST['operation'];
+
+		if ($_SESSION['reponseDeLEleve'] == $_SESSION['bonneReponse']) {
+			echo 'Bonne réponse! La solution était bien '.$_SESSION['operationQuestion']; 
+			echo $_SESSION['bonneReponse'].'. Choisis une autre table de multiplication!';
+		} else {
+			echo "Mauvaise réponse! Tu as répondu ".$_SESSION['reponseDeLEleve'].' alors que la bonne réponse était : '.$_SESSION['operationQuestion']; 
+			echo $_SESSION['bonneReponse'].'. Choisis une autre table de multiplication!';
+		}
 	}
-}
+
 // if (isset($_POST['validReponseRevision'])){
 // 	$reponseRevision = $_POST['validReponseRevision'];
 // 	if (($randomNumber * $choixDeLaTable) == intval($reponseRevision)) {
@@ -198,7 +215,7 @@ if (isset($_POST['validReponseRevision'])){
 // 	}
 // }
 
-?>	
+	?>	
 <!-- script type="text/javascript">
 	let bonneReponse = document.getElementById('reponseSpan');
 	let reponseEleve = document.getElementById('inputReponse');
