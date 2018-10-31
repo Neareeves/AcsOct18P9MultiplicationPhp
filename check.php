@@ -4,10 +4,10 @@
 
 		if ($_POST['reponseEleveAjax'] == $_POST['resultatAjax']) {
 			echo 'Bonne réponse! La solution était bien '.$_POST['operationAjax']; 
-			echo $_SESSION['bonneReponseAjax'].'. Choisis une autre table de multiplication.';
+			echo '. Choisis une autre table de multiplication.';
 		} else {
 			echo "Mauvaise réponse! Tu as répondu ".$_POST['reponseEleveAjax'].' alors que la bonne réponse était : '.$_POST['operationAjax']; 
-			echo $_SESSION['bonneReponseAjax'].'. Choisis une autre table de multiplication.';
+			echo '. Choisis une autre table de multiplication.';
 		}
 	}
 	else {
