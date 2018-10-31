@@ -18,6 +18,12 @@ h1 {background-image: -webkit-gradient( linear, left top, right top, color-stop(
 		font-size: 40px;
 		text-align: center;
 	}
+
+	@media all and (max-width: 700px) {
+		h1{
+			font-size: 20px;
+		}
+	}
 /*ouvrir l'accolade dans une balise et fermer dans une autre balise l'accolade de php peut être remplacé par : (à la place de la première accolade) et endif; à la place de la 2e. Comme ça on peut mettre des structures complexes en html sans s'embrouiller avec les guilleets des echo.*/
 
 /*<label><?php if(isset($_POST['validReponseRevision'])){

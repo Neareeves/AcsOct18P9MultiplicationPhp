@@ -6,13 +6,14 @@ session_start();
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="stylesaleth.css">
+	<meta name="viewport" content="width=device-width, initial scale-1">
 	<title>Outil de révision des tables de multiplication</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="stylesaleth.css">
 
 </head>
 <body>
@@ -20,6 +21,7 @@ session_start();
 		<h1>Révise tes tables de multiplication dans l'fun!</h1>
 		<h2>la table de 3</h2>	
 		<?php
+
 
 		for ($i=0; $i <= 10; $i++) { 
 
@@ -30,15 +32,15 @@ session_start();
 		?>
 
 		<h2>La table de ?</h2>
-		<form method="post" action="index.php">
+		<form method="GET" action="index.php">
 			<label>Tapez un chiffre entre 0 et 10 pour voir apparaître sa table de multiplication</label>
 			<input type="text" name="table">
 			<input type="submit" name="valider"></input>
 		</form>
 
 		<?php
-		if(isset($_POST['valider'])){
-			$i = intval($_POST['table']);
+		if(isset($_GET['valider'])){
+			$i = intval($_GET['table']);
 			if ($i == ''){
 				echo ' ';
 			} else {
@@ -51,11 +53,12 @@ session_start();
 			}
 		}
 		?>
-
+		<!-- GET fait apparaître les variables dans l'url -->
 		<h2>La table de ? 2.0</h2>
 		<form method='post' action='index.php'>
 			<select name='selectionTable' multiple>
-				<option value='0' selected>0</option>
+				<option value="" disabled selected>Choose your option</option>
+				<option value='0'>0</option>
 				<option value='1'>1</option>
 				<option value='2'>2</option>
 				<option value='3'>3</option>
@@ -69,6 +72,8 @@ session_start();
 				<input type='submit' name='validation'>
 			</select>
 		</form>
+
+
 		<?php
 
 		if (isset($_POST['selectionTable'])){
@@ -181,43 +186,88 @@ session_start();
 				}
 				?>
 				<h2>Mode révision</h2>
-				<form action="index.php" method="post">
-					<label>Choisis une table de multiplication pour te tester</label><br>
-					<label for="revision">Table du 0</label>
-					<input type="radio" name="revision[]" value="0"><br>
-					<label for="revision">Table du 1</label>
-					<input type="radio" name="revision[]" value="1"><br>
-					<label for="revision">Table du 2</label>
-					<input type="radio" name="revision[]" value="2"><br>
-					<label for="revision">Table du 3</label>
-					<input type="radio" name="revision[]" value="3"><br>
-					<label for="revision">Table du 4</label>
-					<input type="radio" name="revision[]" value="4"><br>
-					<label for="revision">Table du 5</label>
-					<input type="radio" name="revision[]" value="5"><br>
-					<label for="revision">Table du 6</label>
-					<input type="radio" name="revision[]" value="6"><br>
-					<label for="revision">Table du 7</label>
-					<input type="radio" name="revision[]" value="7"><br>
-					<label for="revision">Table du 8</label>
-					<input type="radio" name="revision[]" value="8"><br>
-					<label for="revision">Table du 9</label>
-					<input type="radio" name="revision[]" value="9"><br>
-					<label for="revision">Table du 10</label>
-					<input type="radio" name="revision[]" value="10"><br>
+				<form action="index.php" method="post">	<label>Choisis une table de multiplication pour te tester</label><br>
+
+
+					<p>
+						<label>
+							<input type="radio" class="with-gap" name="revision[]" value="0">
+							<span>La table du 0</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" class="with-gap" name="revision[]" value="1">
+							<span>La table du 1</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" class="with-gap" name="revision[]" value="2">
+							<span>La table du 2</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" class="with-gap" name="revision[]" value="3">
+							<span>La table du 3</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" name="revision[]" value="4">
+							<span>La table du 4</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" name="revision[]" value="5">
+							<span>La table du 5</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" name="revision[]" value="6">
+							<span>La table du 6</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" name="revision[]" value="7">
+							<span>La table du 7</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" name="revision[]" value="8">
+							<span>La table du 8</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" name="revision[]" value="9">
+							<span>La table du 9</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input type="radio" name="revision[]" value="10">
+							<span>La table du 10</span>
+						</label>
+						
+					</p>
 					<input type="submit" name="validRadio">
 				</form>
 
+				
 				<?php
 				if (isset($_POST['revision'])){
 
-
 					foreach($_POST['revision'] as $choixDeLaTable){
 						$randomNumber = rand(0,10);
-// global $choixDeLaTable;
-// global $randomNumber;
+
 						echo $choixDeLaTable. ' x ' .$randomNumber. ' =';
-	//session
+
 
 					}
 				}
@@ -231,7 +281,7 @@ session_start();
 				?>
 				<form id="formulaireReponseRevision" method="post" action="index.php" style="display: inline">
 
-					<input style="display: none" type="text" name="operation" value="<?php 
+					<input style="display: inline-block;" type="text" name="operation" value="<?php 
 					if (isset($choixDeLaTable)){
 						echo $choixDeLaTable.' x '.$randomNumber.' = ';} ?>">
 						<input style="display: none" type="text" name="resultat" value="<?php echo $choixDeLaTable*$randomNumber ?>">
@@ -275,29 +325,75 @@ session_start();
 
 					<h2>Mode révision, avec Ajax plus blanc que blanc</h2>
 					<form action="index.php" method="post">
+
 						<label>Choisis une table de multiplication pour te tester</label><br>
-						<label for="revisionAjax">Table du 0</label>
-						<input type="radio" name="revisionAjax[]" value="0"><br>
-						<label for="revisionAjax">Table du 1</label>
-						<input type="radio" name="revisionAjax[]" value="1"><br>
-						<label for="revisionAjax">Table du 2</label>
-						<input type="radio" name="revisionAjax[]" value="2"><br>
-						<label for="revisionAjax">Table du 3</label>
-						<input type="radio" name="revisionAjax[]" value="3"><br>
-						<label for="revisionAjax">Table du 4</label>
-						<input type="radio" name="revisionAjax[]" value="4"><br>
-						<label for="revisionAjax">Table du 5</label>
-						<input type="radio" name="revisionAjax[]" value="5"><br>
-						<label for="revisionAjax">Table du 6</label>
-						<input type="radio" name="revisionAjax[]" value="6"><br>
-						<label for="revisionAjax">Table du 7</label>
-						<input type="radio" name="revisionAjax[]" value="7"><br>
-						<label for="revisionAjax">Table du 8</label>
-						<input type="radio" name="revisionAjax[]" value="8"><br>
-						<label for="revisionAjax">Table du 9</label>
-						<input type="radio" name="revisionAjax[]" value="9"><br>
-						<label for="revisionAjax">Table du 10</label>
-						<input type="radio" name="revisionAjax[]" value="10"><br>
+						<p>
+
+							<label>
+								<input type="radio" name="revisionAjax[]" value="0">
+								<span>La table du 0</span>
+							</label>
+							<p>
+							</p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="1">
+								<span>La table du 1</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="2">
+								<span>La table du 2</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="3">
+								<span>La table du 3</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="4">
+								<span>La table du 4</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="5">
+								<span>La table du 5</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="6">
+								<span>La table du 6</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="7">
+								<span>La table du 7</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="8">
+								<span>La table du 8</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="9">
+								<span>La table du 9</span>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="radio" name="revisionAjax[]" value="10">
+								<span>La table du 10</span>
+							</label>
+						</p>
 						<input type="submit" name="validRadio">
 					</form>
 
@@ -316,19 +412,38 @@ session_start();
 
 					?>
 					<form method="post" action="index.php">
-						<input style="display: none" type="text" name="operationAjax" value="<?php 
-						if (isset($choixDeLaTable)){
-							echo $choixDeLaTableAjax.' x '.$randomNumberAjax.' = ';} ?>">
-							<input style="display: none" type="text" name="resultatAjax" value="<?php echo $choixDeLaTable*$randomNumber ?>">
-							<input type="text" name="ReponseEleveAjax">
-							<input id="submitreponseAjax" type="submit" name="submitReponseAjax">
-						</form>
+						<input style="display: inline-block;" type="text" name="operationAjax" value="<?php 
+					if (isset($choixDeLaTableAjax)){
+						echo $choixDeLaTableAjax.' x '.$randomNumberAjax.' = ';} ?>">
+						<input style="display: inline-block;" type="text" name="resultatAjax" value="<?php echo $choixDeLaTableAjax*$randomNumberAjax ?>">
+						<input type="text" id="reponseElevePrVariable" name="reponseEleveAjax">
+						<input id="submitreponseAjax" onclick='loadDoc();return false;' type="submit" name="submitReponseAjax" value="Je me teste">
+					</form>
 
-						<div id="bonneReponseBravo"></div>
-						<div id="mauvaiseReponsePasBravo"></div>
+					<div id="bonneReponseBravo"></div>
+					<div id="mauvaiseReponsePasBravo"></div>
+					<!-- <input type="button" onclick='loadDoc()'>fdfsdsfd</input> -->
+			
+<script>
+	let variable = document.getElementById('reponseElevePrVariable').value;
+//	console.log(variable);
+							function loadDoc(){
+								var xhttp = new XMLHttpRequest();
 
 
-						<script>
+							xhttp.onreadystatechange = function() {
+								if (this.readyState == 4 && this.status == 200){
+									document.getElementById('bonneReponseBravo').innerHTML= this.responseText;
+								}
+							}
+
+
+
+								xhttp.open("POST", "check.php", true);
+								xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+								xhttp.send('submitReponseAjax=' + variable);
+								//console.log(variable);
+							}
 
 // function submitForm()
 // { 
@@ -344,13 +459,13 @@ session_start();
 // }
 // submitForm();
 
-$(document).ready(function(){
-	$("#submitreponseAjax").click(function(){
-		$.ajax({url: "ajax.html", success: function(cocorico){
-			$("#bonneReponseBravo").html(cocorico);
-		}});
-	});
-});
+// $(document).ready(function(){
+// 	$("#submitreponseAjax").click(function(){
+// 		$.ajax({url: "ajax.html", success: function(cocorico){
+// 			$("#bonneReponseBravo").html(cocorico);
+// 		}});
+// 	});
+// });
 
 
 
