@@ -1,31 +1,127 @@
 body{
-	margin: 0px 50px 0 0;
-	padding: 20px 20px 0 0;
-
+	/*margin: 0px 50px 0 0;
+	padding: 20px 20px 0 0;*/
+	background-color: rgba(17, 141, 129, 0.20);
 }
 section {
-	width: 60%;
+	width: 600px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 	margin-bottom: 50px;
+	padding-top: 10px;
+	padding-bottom: 25px;
 }
-h1 {background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+h1 {
+	/*background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
 		background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
 		color:transparent;
 		-webkit-background-clip: text;
 		background-clip: text;
 		font-size: 40px;
+		text-align: center;*/
+	}
+	h3 {
+		font-size: 2rem;
+		margin-top: 48px;
+	}
+
+	#exo1Table3 {
+		background-color: #fbf2df;
+		box-shadow: 0px 0px 10px 6px rgba(119, 119, 119, 0.75);
+		margin-top: 30px;	
+	}
+	#exo2Input {
+
+	}
+	#exo3Select{
+		background-color: #fbf2df;
+		box-shadow: 0px 0px 10px 6px rgba(119, 119, 119, 0.55);
+	}
+	#exo5radio {
+		background-color: #fbf2df;
+		box-shadow: 0px 0px 10px 6px rgba(119, 119, 119, 0.55);
+	}
+	#titrePage{
+		width: 1000px;
+		background-image: url('image.png');
+		background-size: cover;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		margin-left: auto;
+		margin-right: auto;
 		text-align: center;
 	}
 
+	.flexbox {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+
+	a:hover {
+		color: rgba(62, 36, 122, 1);
+	}
+	h3 {
+		margin-bottom: 20px;
+	}
+
+	.select {
+		text-align: center;
+
+	}
+	input {
+		background-image: url('image.png');
+
+		background-size: contain;
+		padding: 5px;
+	}
+
+/*************MEDIA Q*********/
+
 	@media all and (max-width: 700px) {
+		section {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-bottom: 50px;
+	padding-top: 10px;
+	padding-bottom: 25px;
+}
 		h1{
-			font-size: 20px;
+			font-size: 33px;
+		}
+		#titrePage{
+			width: 95%;
+			background-image: url('image.png');
+			background-size: cover;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+		h3 {
+		font-size: 20px;
+			margin-bottom: 15px;
 		}
 	}
-/*ouvrir l'accolade dans une balise et fermer dans une autre balise l'accolade de php peut être remplacé par : (à la place de la première accolade) et endif; à la place de la 2e. Comme ça on peut mettre des structures complexes en html sans s'embrouiller avec les guilleets des echo.*/
 
-/*<label><?php if(isset($_POST['validReponseRevision'])){
-			echo $choixDeLaTable. ' x ' .$randomNumber. ' =';} ?>
-		</label>*/
+	@media all and (min-width: 701px) and (max-width: 1000px) {
+		#titrePage{
+			width: 700px;
+			background-image: url('image.png');
+			background-size: cover;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+	}
+
+/*label {
+	color: #8da2bf;
+	}*/
+	/*ouvrir l'accolade dans une balise et fermer dans une autre balise l'accolade de php peut être remplacé par : (à la place de la première accolade) et endif; à la place de la 2e. Comme ça on peut mettre des structures complexes en html sans s'embrouiller avec les guilleets des echo.*/
+
